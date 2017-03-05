@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 struct URLRequestBuilder{
     static let PLbaseURL =  "http://prolific-interview.herokuapp.com/58b0a27680b91a000a49ef17/"
     static var bookModelArray: [BookModel] = []
@@ -31,39 +32,52 @@ struct URLRequestBuilder{
                 request.url = URL(string: URLRequestBuilder.PLbaseURL + allBooks)
                 request.httpMethod = "GET"
                 APIClient.sendRequest(request: request){ bookArray in
+                    DispatchQueue.main.async{
                     APIClient.bookModelArray = bookArray
+                    }
                 }
             case .GETBook(parameter: let bookID):
                 request.url = URL(string: URLRequestBuilder.PLbaseURL + bookID)
                 request.httpMethod = "GET"
                 APIClient.sendRequest(request: request){ bookArray in
+                    DispatchQueue.main.async{
                     APIClient.bookModelArray = bookArray
+                    }
                 }
             case .POSTBook(parameters: let postDict):
                 let postString = postDict.map{"\($0.0)=\($0.1)" }.joined(separator: "&")
                 request.httpMethod = "POST"
                 request.httpBody = postString.data(using: String.Encoding.utf8)
                 APIClient.sendRequest(request: request){ bookArray in
-                    APIClient.bookModelArray = bookArray
+                    DispatchQueue.main.async{
+                        APIClient.bookModelArray = bookArray
+                    }
+                    //print("alright then")
                 }
             case .PUTBook(parameters: let putDict):
                 let putString = putDict.map{"\($0.0)=\($0.1)" }.joined(separator: "&")
                 request.httpMethod = "PUT"
                 request.httpBody = putString.data(using: String.Encoding.utf8)
                 APIClient.sendRequest(request: request) { bookArray in
-                    APIClient.bookModelArray = bookArray
+                    DispatchQueue.main.async{
+                        APIClient.bookModelArray = bookArray
+                    }
                 }
             case .DELETEBook(parameter: let deletedBookID):
                 request.url = URL(string: URLRequestBuilder.PLbaseURL + deletedBookID)
                 request.httpMethod = "DELETE"
                 APIClient.sendRequest(request: request) { bookArray in
-                    APIClient.bookModelArray = bookArray 
+                    DispatchQueue.main.async{
+                        APIClient.bookModelArray = bookArray
+                    }
                 }
             case .DELETEAllBooks(parameter: let deleteAllID):
                 request.url = URL(string: URLRequestBuilder.PLbaseURL + deleteAllID)
                 request.httpMethod = "DELETE"
                 APIClient.sendRequest(request: request){ bookArray in
-                    APIClient.bookModelArray = bookArray
+                    DispatchQueue.main.async{
+                        APIClient.bookModelArray = bookArray
+                    }
                 }
             }
             

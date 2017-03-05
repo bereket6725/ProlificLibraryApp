@@ -11,10 +11,13 @@ import Foundation
 
  struct ViewModel{
 
-    private var bookModelArray: [BookModel] = []
+    var bookModelArray: [BookModel] = []
+
+    static let sampleDictionary = ["author": "J.K. Rowling", "categories":"fantasy", "title": "Harry Potter and the Goblet of Fire","publisher":"Random House"] as [String:Any]
+
 
     static func startNetworking(){
-        URLRequestBuilder.Network.buildRequest(networkType: <#T##URLRequestBuilder.Network#>)
+        URLRequestBuilder.Network.buildRequest(networkType: .GETBook(parameter: "books"))
     }
     
     
