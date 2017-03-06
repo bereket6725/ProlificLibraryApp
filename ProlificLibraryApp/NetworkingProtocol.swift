@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+protocol NetworkingProtocol {
+    func requestType()
+    static func buildURL()->URL
+    static func makeRequest()
+}
