@@ -1,0 +1,6 @@
+framework module Pods_ProlificLibraryApp {
+  umbrella header "Pods-ProlificLibraryApp-umbrella.h"
+
+  export *
+  module * { export * }
+}
