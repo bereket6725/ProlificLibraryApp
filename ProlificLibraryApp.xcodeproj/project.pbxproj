@@ -90,6 +90,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		E353C5E21E6E4E3300FBD6A4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E3965F311E6E185800F25B1E /* BookListViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		E3965EF71E6CEAD600F25B1E = {
 			isa = PBXGroup;
 			children = (
@@ -120,7 +128,7 @@
 				E3965F291E6DFFA400F25B1E /* ViewModel.swift */,
 				E3965F071E6CEAD600F25B1E /* Main.storyboard */,
 				E3965F2F1E6E175200F25B1E /* TableDataSource.swift */,
-				E3965F311E6E185800F25B1E /* BookListViewController.swift */,
+				E353C5E21E6E4E3300FBD6A4 /* Controller */,
 				E3965F0A1E6CEAD600F25B1E /* Assets.xcassets */,
 				E3965F0C1E6CEAD600F25B1E /* LaunchScreen.storyboard */,
 				E3965F0F1E6CEAD600F25B1E /* Info.plist */,

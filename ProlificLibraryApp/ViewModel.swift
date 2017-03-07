@@ -10,23 +10,29 @@ import Foundation
 
 
 final class ViewModel{
-    private var books: [Book] = []
+    var books:[Book] = []
 
     //makes request to retrieve bookArray from Prolifics API
     static func startNetworking(networkType: Networker){
         networkType.buildRequest()  
     }
     //for TVController to present on tableView Cells
-    static func returnBookTitle(index: IndexPath)->String{
-        return "test"
+     func returnBookTitle(index: IndexPath)->String{
+        let bookNumber = index.row + 1
+        let title = books[bookNumber].title
+        return title
     }
     //for TVController to present on tableView Cells
-    static func returnBookAuthor(index: IndexPath)->String{
-        return "test"
+     func returnBookAuthor(index: IndexPath)->String{
+        let bookNumber = index.row + 1
+        let author = books[bookNumber].author
+        return author
     }
     //for DVController to present on Screen
-    static func returnAllBookDetails(index: IndexPath)->Book{
-        return Book(author: "author-Test", categories: "categories-Test", id: 000, lastCheckedOut: "lastCheckedOut-Test", lastCheckedOutBy: "lastCheckedOutBy-Test", publisher: "publisher-Test", title: "title-Test", url: "url-Test")
+     func returnAllDetailsOfBook(index: IndexPath)->Book{
+        let bookNumber = index.row
+        let book = books[bookNumber]
+        return book
     }
 
     

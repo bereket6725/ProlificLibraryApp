@@ -8,7 +8,6 @@
 
 import Foundation
 
-//protocol NetworkingProtocol {
-////func getBooks<T:Parsable>(completion: @escaping (([T])->Void))
-//static func buildURL()->URL
-//}
+protocol NetworkingProtocol {
+    func buildRequest()
+}

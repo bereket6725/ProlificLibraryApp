@@ -24,11 +24,9 @@ class BookListViewController: UIViewController, UITableViewDelegate{
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        <#code#>
     }
 
-    func reloadTableData(){
-        
+    func reloadTableData(){        
     }
 
     /*
