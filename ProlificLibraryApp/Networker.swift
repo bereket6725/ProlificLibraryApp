@@ -9,33 +9,45 @@
 import Foundation
 import Alamofire
 
-enum Networker: NetworkingProtocol {
-    case GET
-    case POST
-    case PUT
-    case DELETE(int: Int, all: Bool)
 
-    
-    func requestType(){
+
+enum NetworkerType {
+    case GET(String)
+    case POST([String:AnyObject])
+    case PUT([String:AnyObject])
+    case DELETE(id: Int?)
+
+    func getBooks<T:Parsable>(baseURL: String, books: String, completion: @escaping (([T])->Void)){
+        Alamofire.request(baseURL+books).responseData{ data in
+            guard let rawData = data.data else{
+                print("data error")
+                return
+            }
+            let results = T.parseJSON(data: rawData)
+            completion(results)
+
+    }
+}
+    func buildRequest(){
+        let baseURL = "http://prolific-interview.herokuapp.com/58b0a27680b91a000a49ef17/"
+
         switch self{
-        case .GET:
-            print("GET request")
-        case .POST:
+        case .GET(let books):
+            getBooks(baseURL: baseURL, books: books)
+        case .POST(let postDictionary):
+            Alamofire.request(baseURL, method: .post, parameters: postDictionary)
             print("POST request")
-        case .PUT:
-            print("PUT request")
-        case .DELETE(let id, let all):
-            print("DELETE \(id) or \(all)")
+        case .PUT(let putDictionary):
+            Alamofire.request(baseURL, method: .put, parameters: putDictionary)
+        case .DELETE(let id):
+            if id == nil {
+                Alamofire.request(baseURL+"clean", method: .delete)
+            }
+            else{
+                let stringID = String(id!)
+                Alamofire.request(baseURL+stringID, method: .delete)
 
+            }
         }
     }
-
-
-    static func buildURL()->URL{
-        return URL(string:"www.google.com")!
-    }
-
-    static func makeRequest(){
-    }
-
 }

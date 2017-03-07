@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		C913BEE3FBB273F668F373D6 /* Pods_ProlificLibraryApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A4029F06D1358BAE2A3E53B /* Pods_ProlificLibraryApp.framework */; };
 		E3965F041E6CEAD600F25B1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3965F031E6CEAD600F25B1E /* AppDelegate.swift */; };
-		E3965F061E6CEAD600F25B1E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3965F051E6CEAD600F25B1E /* ViewController.swift */; };
 		E3965F091E6CEAD600F25B1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3965F071E6CEAD600F25B1E /* Main.storyboard */; };
 		E3965F0B1E6CEAD600F25B1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3965F0A1E6CEAD600F25B1E /* Assets.xcassets */; };
 		E3965F0E1E6CEAD600F25B1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3965F0C1E6CEAD600F25B1E /* LaunchScreen.storyboard */; };
@@ -19,6 +18,8 @@
 		E3965F2A1E6DFFA400F25B1E /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3965F291E6DFFA400F25B1E /* ViewModel.swift */; };
 		E3965F2C1E6E00CD00F25B1E /* Networker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3965F2B1E6E00CD00F25B1E /* Networker.swift */; };
 		E3965F2E1E6E087100F25B1E /* NetworkingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3965F2D1E6E087100F25B1E /* NetworkingProtocol.swift */; };
+		E3965F301E6E175200F25B1E /* TableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3965F2F1E6E175200F25B1E /* TableDataSource.swift */; };
+		E3965F321E6E185800F25B1E /* BookListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3965F311E6E185800F25B1E /* BookListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +38,6 @@
 		4A4029F06D1358BAE2A3E53B /* Pods_ProlificLibraryApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProlificLibraryApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3965F001E6CEAD600F25B1E /* ProlificLibraryApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProlificLibraryApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3965F031E6CEAD600F25B1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E3965F051E6CEAD600F25B1E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E3965F081E6CEAD600F25B1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E3965F0A1E6CEAD600F25B1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E3965F0D1E6CEAD600F25B1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -50,6 +50,8 @@
 		E3965F291E6DFFA400F25B1E /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		E3965F2B1E6E00CD00F25B1E /* Networker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networker.swift; sourceTree = "<group>"; };
 		E3965F2D1E6E087100F25B1E /* NetworkingProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingProtocol.swift; sourceTree = "<group>"; };
+		E3965F2F1E6E175200F25B1E /* TableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableDataSource.swift; sourceTree = "<group>"; };
+		E3965F311E6E185800F25B1E /* BookListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,13 +114,13 @@
 			isa = PBXGroup;
 			children = (
 				E3965F031E6CEAD600F25B1E /* AppDelegate.swift */,
-				E3965F051E6CEAD600F25B1E /* ViewController.swift */,
-				E3965F251E6DFE8400F25B1E /* Parsable.swift */,
-				E3965F231E6DFE7200F25B1E /* Book.swift */,
-				E3965F2D1E6E087100F25B1E /* NetworkingProtocol.swift */,
+				E3965F341E6E1A7A00F25B1E /* Protocols */,
+				E3965F331E6E1A6700F25B1E /* Model */,
 				E3965F2B1E6E00CD00F25B1E /* Networker.swift */,
 				E3965F291E6DFFA400F25B1E /* ViewModel.swift */,
 				E3965F071E6CEAD600F25B1E /* Main.storyboard */,
+				E3965F2F1E6E175200F25B1E /* TableDataSource.swift */,
+				E3965F311E6E185800F25B1E /* BookListViewController.swift */,
 				E3965F0A1E6CEAD600F25B1E /* Assets.xcassets */,
 				E3965F0C1E6CEAD600F25B1E /* LaunchScreen.storyboard */,
 				E3965F0F1E6CEAD600F25B1E /* Info.plist */,
@@ -133,6 +135,23 @@
 				E3965F1A1E6CEAD600F25B1E /* Info.plist */,
 			);
 			path = ProlificLibraryAppTests;
+			sourceTree = "<group>";
+		};
+		E3965F331E6E1A6700F25B1E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E3965F231E6DFE7200F25B1E /* Book.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		E3965F341E6E1A7A00F25B1E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				E3965F2D1E6E087100F25B1E /* NetworkingProtocol.swift */,
+				E3965F251E6DFE8400F25B1E /* Parsable.swift */,
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,11 +308,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3965F061E6CEAD600F25B1E /* ViewController.swift in Sources */,
+				E3965F301E6E175200F25B1E /* TableDataSource.swift in Sources */,
 				E3965F2C1E6E00CD00F25B1E /* Networker.swift in Sources */,
 				E3965F041E6CEAD600F25B1E /* AppDelegate.swift in Sources */,
 				E3965F241E6DFE7200F25B1E /* Book.swift in Sources */,
 				E3965F2A1E6DFFA400F25B1E /* ViewModel.swift in Sources */,
+				E3965F321E6E185800F25B1E /* BookListViewController.swift in Sources */,
 				E3965F2E1E6E087100F25B1E /* NetworkingProtocol.swift in Sources */,
 				E3965F261E6DFE8400F25B1E /* Parsable.swift in Sources */,
 			);

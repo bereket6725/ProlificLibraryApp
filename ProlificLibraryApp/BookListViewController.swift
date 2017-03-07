@@ -8,19 +8,28 @@
 
 import UIKit
 
-class BookListViewController: UIViewController {
+class BookListViewController: UIViewController, UITableViewDelegate{
+    var tableView: UITableView!
+    var dataSource: TableDataSource!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        tableView = UITableView(frame: view.bounds)
+        tableView.dataSource = dataSource
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        <#code#>
+    }
+
+    func reloadTableData(){
+        
+    }
 
     /*
     // MARK: - Navigation
