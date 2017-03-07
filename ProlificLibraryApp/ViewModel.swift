@@ -14,7 +14,7 @@ final class ViewModel{
 
     //makes request to retrieve bookArray from Prolifics API
     static func startNetworking(networkType: Networker){
-        n
+        networkType.buildRequest()  
     }
     //for TVController to present on tableView Cells
     static func returnBookTitle(index: IndexPath)->String{

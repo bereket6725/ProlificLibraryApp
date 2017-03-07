@@ -11,7 +11,7 @@ import Alamofire
 
 
 
-enum NetworkerType {
+enum Networker {
     case GET(String)
     case POST([String:AnyObject])
     case PUT([String:AnyObject])
@@ -25,15 +25,17 @@ enum NetworkerType {
             }
             let results = T.parseJSON(data: rawData)
             completion(results)
-
     }
 }
+
     func buildRequest(){
         let baseURL = "http://prolific-interview.herokuapp.com/58b0a27680b91a000a49ef17/"
 
         switch self{
         case .GET(let books):
-            getBooks(baseURL: baseURL, books: books)
+            getBooks(baseURL: baseURL, books: books) { _ in
+
+            }
         case .POST(let postDictionary):
             Alamofire.request(baseURL, method: .post, parameters: postDictionary)
             print("POST request")
