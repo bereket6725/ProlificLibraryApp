@@ -15,11 +15,6 @@ enum Result <T, E:Error>{
     case failure(E)
 }
 
-protocol RequestBuildable {
-    var requestType: RequestType { get }
-    var endpoint: URL? { get }
-}
-
 struct ProlificRequest: RequestBuildable {
     let requestType: RequestType
     let endpoint: URL?

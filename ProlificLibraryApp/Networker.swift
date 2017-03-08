@@ -14,30 +14,61 @@ enum RequestError{
     case invalidData
     case defaultRequestError
 }
+//this file will execute our network request 
+extension Networkable  {
+    func requestData(builder: RequestBuildable,
+                     completion: @escaping (Result<Data, RequestError>) -> Void) {
+        guard let url = builder.endpoint else { completion(.failure(.invalidUrl)); return }
+        let type = builder.requestType
 
-//file will execute our Network Request 
-struct Networker{
-
-    static func request<T: Parsable>(url: URL, method: HTTPMethod,  parameters: [String:AnyObject]?,completion: @escaping ([T]?, DataRequest?, Error?)->Void) {
-        switch method{
+        switch type {
         case .get:
-            Alamofire.request(url).responseData{ data in
-                guard let rawData = data.data else { return }
-                let results = T.parseJSON(data: rawData)
-                completion(results, nil, nil)
+            Alamofire.request(url).responseJSON{ response in
+                guard let rawData = response.data else { completion(.failure(.invalidData)); return }
+                completion(.success(rawData))
             }
-        case .post:
-            let dataRequest = Alamofire.request(url, method: .post, parameters: parameters)
-            completion(nil, dataRequest, nil)
-        case .put:
-            let dataRequest = Alamofire.request(url, method: .put, parameters: parameters)
-            completion(nil, dataRequest, nil)
-        case .delete:
-            let dataRequest = Alamofire.request(url, method: .delete, parameters: parameters)
-            completion(nil, dataRequest, nil)
-        default:
-            print("wrong HTTPMethod")
+        default: fatalError("invalid request type: \(type). Expected: .get")
         }
+    }
 
+    func requestUpdate(builder: RequestBuildable, completion: @escaping (Result<Void, RequestError>) -> Void) {
+
+        guard let url = builder.endpoint else { completion(.failure(.invalidUrl)); return }
+        var updateParameters: [String: Any]?
+
+        switch builder.requestType {
+        case .get: fatalError("invalid request type. .get is not for updates")
+        case .put(_ , let parameters): updateParameters = parameters
+        case .post(_ , let parameters): updateParameters = parameters
+        default: updateParameters = nil
+        }
+        Alamofire.request(url, method: builder.requestType.methodType, parameters: updateParameters).responseJSON{  response in
+            if let statusCode = response.response?.statusCode, 200..<300 ~= statusCode {
+                completion(.success(()))
+            } else {
+                completion(.failure(.defaultRequestError))
+            }
+        }
     }
 }
+
+struct ProlificNetworker: Networkable {
+    func get(builder: RequestBuildable, completion: @escaping (Result<[Book], RequestError>) -> Void) {
+        requestData(builder: builder) { result in
+            switch result {
+            case .success(let data): completion(.success(Book.parseJSON(data: data)))
+            case .failure(let error): completion(.failure(error))
+            }
+        }
+    }
+
+    func update(builder: RequestBuildable, completion: @escaping (Result<Void, RequestError>) -> Void){
+        requestUpdate(builder: builder) { result in
+            switch result {
+            case .success: completion(.success())
+            case .failure(let error): completion(.failure(error))
+            }
+        }
+    }
+}
+

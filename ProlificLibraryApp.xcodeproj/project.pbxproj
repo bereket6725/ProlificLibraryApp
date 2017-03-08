@@ -22,6 +22,7 @@
 		E3965F2A1E6DFFA400F25B1E /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3965F291E6DFFA400F25B1E /* ViewModel.swift */; };
 		E3965F301E6E175200F25B1E /* TableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3965F2F1E6E175200F25B1E /* TableDataSource.swift */; };
 		E3965F321E6E185800F25B1E /* BookListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3965F311E6E185800F25B1E /* BookListViewController.swift */; };
+		E3D673471E6FD6C40021BECE /* RequestBuildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D673461E6FD6C40021BECE /* RequestBuildable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		E3965F291E6DFFA400F25B1E /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		E3965F2F1E6E175200F25B1E /* TableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableDataSource.swift; sourceTree = "<group>"; };
 		E3965F311E6E185800F25B1E /* BookListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookListViewController.swift; sourceTree = "<group>"; };
+		E3D673461E6FD6C40021BECE /* RequestBuildable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBuildable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 			children = (
 				E3965F251E6DFE8400F25B1E /* Parsable.swift */,
 				E38BC4621E6F8CAB009F47EF /* Networkable.swift */,
+				E3D673461E6FD6C40021BECE /* RequestBuildable.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				E3965F041E6CEAD600F25B1E /* AppDelegate.swift in Sources */,
 				E38BC4651E6F90F3009F47EF /* BookDetailViewController.swift in Sources */,
 				E3965F241E6DFE7200F25B1E /* Book.swift in Sources */,
+				E3D673471E6FD6C40021BECE /* RequestBuildable.swift in Sources */,
 				E3965F2A1E6DFFA400F25B1E /* ViewModel.swift in Sources */,
 				E38BC45F1E6F8298009F47EF /* Networker.swift in Sources */,
 				E3965F321E6E185800F25B1E /* BookListViewController.swift in Sources */,
