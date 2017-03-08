@@ -33,3 +33,28 @@ enum API{
         }
     }
 }
+
+
+//determines the type of the request 
+enum RequestType{
+    case get(String)
+    case post([String:AnyObject])
+    case put([String:AnyObject])
+    case delete(id: Int)
+    case clear(String)
+
+    var methodType: Alamofire.HTTPMethod{
+        switch self{
+        case .get:
+            return .get
+        case .post:
+            return .post
+        case .put:
+            return .put
+        case .delete, .clear: //both are delete requests
+            return .delete
+        }
+    }
+}
+
+
