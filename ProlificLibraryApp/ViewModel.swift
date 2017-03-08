@@ -14,21 +14,6 @@ import Foundation
 
     //makes request to retrieve bookArray from Prolifics API
     func startNetworking(networkType: Networker){
-//        networkType.buildRequest(requestType: .GET){ returnObject in
-//            if let booksArray = returnObject as! [Book]{
-//                self.books = booksArray
-//            }
-//            else if let dataRequest = returnObject as! DataRequest{
-//                print(dataRequest)
-//            }
-//            else{
-//                print("error")
-//            }
-//
-//        }
-        networkType.buildRequest(requestType: .GET){results in
-            print("\(results)")
-        }
     }
 
     //for TVController to present on tableView Cells

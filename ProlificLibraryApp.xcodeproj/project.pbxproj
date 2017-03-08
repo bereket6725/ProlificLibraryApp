@@ -11,6 +11,7 @@
 		E38BC45D1E6F8285009F47EF /* NetworkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38BC45C1E6F8285009F47EF /* NetworkType.swift */; };
 		E38BC45F1E6F8298009F47EF /* Networker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38BC45E1E6F8298009F47EF /* Networker.swift */; };
 		E38BC4631E6F8CAB009F47EF /* Networkable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38BC4621E6F8CAB009F47EF /* Networkable.swift */; };
+		E38BC4651E6F90F3009F47EF /* BookDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38BC4641E6F90F3009F47EF /* BookDetailViewController.swift */; };
 		E3965F041E6CEAD600F25B1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3965F031E6CEAD600F25B1E /* AppDelegate.swift */; };
 		E3965F091E6CEAD600F25B1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3965F071E6CEAD600F25B1E /* Main.storyboard */; };
 		E3965F0B1E6CEAD600F25B1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3965F0A1E6CEAD600F25B1E /* Assets.xcassets */; };
@@ -40,6 +41,7 @@
 		E38BC45C1E6F8285009F47EF /* NetworkType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkType.swift; sourceTree = "<group>"; };
 		E38BC45E1E6F8298009F47EF /* Networker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networker.swift; sourceTree = "<group>"; };
 		E38BC4621E6F8CAB009F47EF /* Networkable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networkable.swift; sourceTree = "<group>"; };
+		E38BC4641E6F90F3009F47EF /* BookDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDetailViewController.swift; sourceTree = "<group>"; };
 		E3965F001E6CEAD600F25B1E /* ProlificLibraryApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProlificLibraryApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3965F031E6CEAD600F25B1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3965F081E6CEAD600F25B1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				E3965F311E6E185800F25B1E /* BookListViewController.swift */,
+				E38BC4641E6F90F3009F47EF /* BookDetailViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				E38BC4631E6F8CAB009F47EF /* Networkable.swift in Sources */,
 				E3965F301E6E175200F25B1E /* TableDataSource.swift in Sources */,
 				E3965F041E6CEAD600F25B1E /* AppDelegate.swift in Sources */,
+				E38BC4651E6F90F3009F47EF /* BookDetailViewController.swift in Sources */,
 				E3965F241E6DFE7200F25B1E /* Book.swift in Sources */,
 				E3965F2A1E6DFFA400F25B1E /* ViewModel.swift in Sources */,
 				E38BC45F1E6F8298009F47EF /* Networker.swift in Sources */,

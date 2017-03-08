@@ -12,7 +12,7 @@ import Alamofire
 //file will execute our Network Request 
 struct Networker{
 
-    static func request<T: Parsable>(url: URL,method: HTTPMethod, parameters: [String:AnyObject]?,completion: @escaping ([T]?, DataRequest?, Error?)->Void) {
+    static func request<T: Parsable>(url: URL, method: HTTPMethod,  parameters: [String:AnyObject]?,completion: @escaping ([T]?, DataRequest?, Error?)->Void) {
         switch method{
         case .get:
             Alamofire.request(url).responseData{ data in
@@ -32,5 +32,6 @@ struct Networker{
         default:
             print("wrong HTTPMethod")
         }
+
     }
 }

@@ -1,36 +1,25 @@
 //
-//  BookListViewController.swift
+//  BookDetailViewController.swift
 //  ProlificLibraryApp
 //
-//  Created by Bereket Ghebremedhin on 3/6/17.
+//  Created by Bereket Ghebremedhin on 3/7/17.
 //  Copyright © 2017 Bereket Ghebremedhin. All rights reserved.
 //
 
 import UIKit
 
-class BookListViewController: UIViewController, UITableViewDelegate{
-    var tableView: UITableView!
-    var dataSource: TableDataSource!
+class BookDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView = UITableView(frame: view.bounds)
-        tableView.dataSource = dataSource
-
-        let viewModel = ViewModel()
-        
+        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    }
-
-    func reloadTableData(){        
-    }
+    
 
     /*
     // MARK: - Navigation
