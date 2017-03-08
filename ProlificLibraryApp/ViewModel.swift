@@ -9,19 +9,35 @@
 import Foundation
 
 
-final class ViewModel{
-    var books:[Book] = []
+ struct ViewModel{
+    private var books:[Book] = []
 
     //makes request to retrieve bookArray from Prolifics API
-    static func startNetworking(networkType: Networker){
-        networkType.buildRequest()  
+    func startNetworking(networkType: Networker){
+//        networkType.buildRequest(requestType: .GET){ returnObject in
+//            if let booksArray = returnObject as! [Book]{
+//                self.books = booksArray
+//            }
+//            else if let dataRequest = returnObject as! DataRequest{
+//                print(dataRequest)
+//            }
+//            else{
+//                print("error")
+//            }
+//
+//        }
+        networkType.buildRequest(requestType: .GET){results in
+            print("\(results)")
+        }
     }
+
     //for TVController to present on tableView Cells
      func returnBookTitle(index: IndexPath)->String{
         let bookNumber = index.row + 1
         let title = books[bookNumber].title
         return title
     }
+
     //for TVController to present on tableView Cells
      func returnBookAuthor(index: IndexPath)->String{
         let bookNumber = index.row + 1
@@ -34,8 +50,5 @@ final class ViewModel{
         let book = books[bookNumber]
         return book
     }
-
-    
-    
 
 }

@@ -9,5 +9,5 @@
 import Foundation
 
 protocol NetworkingProtocol {
-    func buildRequest()
+    func buildRequest(completion: @escaping(AnyObject)->Void)
 }

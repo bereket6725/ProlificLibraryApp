@@ -16,6 +16,8 @@ class BookListViewController: UIViewController, UITableViewDelegate{
         super.viewDidLoad()
         tableView = UITableView(frame: view.bounds)
         tableView.dataSource = dataSource
+        let viewModel = ViewModel()
+        viewModel.startNetworking(networkType: .GET)
     }
 
     override func didReceiveMemoryWarning() {
