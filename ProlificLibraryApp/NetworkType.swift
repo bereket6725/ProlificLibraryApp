@@ -9,12 +9,12 @@
 import Foundation
 import Alamofire
 
-//handle errors from our API
 enum Result <T, E:Error>{
     case success(T)
     case failure(E)
 }
 
+//holds all our information needed to pass in our Networker (particularly our Prolific Netowkrer)
 struct ProlificRequest: RequestBuildable {
     let requestType: RequestType
     let endpoint: URL?
