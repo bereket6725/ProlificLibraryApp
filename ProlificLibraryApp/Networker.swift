@@ -8,7 +8,7 @@
 
 import Foundation
 import Alamofire
-
+//handles request errors
 enum RequestError{
     case invalidUrl
     case invalidData
@@ -52,6 +52,7 @@ extension Networkable  {
     }
 }
 
+//makes request
 struct ProlificNetworker: Networkable {
     func get(builder: RequestBuildable, completion: @escaping (Result<[Book], RequestError>) -> Void) {
         requestData(builder: builder) { result in

@@ -15,6 +15,10 @@ enum Result <T, E:Error>{
     case failure(E)
 }
 
+enum Result<T, E: Error> {
+    case success(T)
+    case failure(E)
+}
 struct ProlificRequest: RequestBuildable {
     let requestType: RequestType
     let endpoint: URL?
@@ -36,33 +40,17 @@ struct ProlificRequest: RequestBuildable {
     }
 }
 
-//this file will build out network request
-struct BaseUrlStrings{
-    fileprivate static let prolificUrlString = "http:prolific-interview.herokuapp.com/58b0a27680b91a000a49ef17/"
+
+struct BaseUrlStrings {
+    fileprivate static let prolific = "http:prolific-interview.herokuapp.com/58b0a27680b91a000a49ef17"
 }
 
 struct ProlificAPIParameter{
-    static let books  = "books"
-    static let clearBooks = "clear"
+    static let books  =  "/books"
+    static let deleteAll  =  "/clear"
 }
 
-//decides what API we use and gets us the right URL
-//now, it might seem overkill when we just have one case, but Im trying to imagine how this app looks like in the future.
-//I would suspect then that we might end up using a variety of API's so this design may come in handy as it grows
-enum API{
-    case Prolific
-
-    func apiBaseUrl(queryParameters: String?)->URL?{
-        switch self{
-        case .Prolific:
-            guard queryParameters != nil else {return URL(string: BaseUrls.prolificUrlString)}
-            return URL(string: BaseUrls.prolificUrlString+queryParameters!)
-        }
-    }
-}
-
-
-//determines the type of the request 
+//determines the request type
 enum RequestType {
     case get
     case post(id: Int, parameters: [String: Any])
@@ -83,5 +71,4 @@ enum RequestType {
         }
     }
 }
-
 
