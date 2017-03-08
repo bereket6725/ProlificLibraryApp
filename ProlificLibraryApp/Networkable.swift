@@ -10,6 +10,5 @@ import Foundation
 import Alamofire
 
 protocol Networkable{
-    static func request<T:Parsable>(API: API, method: HTTPMethod, parameters: [String:AnyObject]?, completion: @escaping ([T]?, DataRequest?, Error?)->Void)
-
+    
 }

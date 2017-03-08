@@ -9,6 +9,12 @@
 import Foundation
 import Alamofire
 
+enum RequestError{
+    case invalidUrl
+    case invalidData
+    case defaultRequestError
+}
+
 //file will execute our Network Request 
 struct Networker{
 

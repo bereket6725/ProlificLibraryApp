@@ -9,5 +9,6 @@
 import Foundation
 
 protocol Parsable{
-    static func parseJSON(data: Data) -> [Self]
+    associatedType T
+    static func parseJSON(data: Data) -> T 
 }
