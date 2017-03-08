@@ -15,10 +15,6 @@ enum Result <T, E:Error>{
     case failure(E)
 }
 
-enum Result<T, E: Error> {
-    case success(T)
-    case failure(E)
-}
 struct ProlificRequest: RequestBuildable {
     let requestType: RequestType
     let endpoint: URL?
