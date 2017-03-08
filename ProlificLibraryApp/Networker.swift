@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 //handles request errors
-enum RequestError{
+enum RequestError:Error{
     case invalidUrl
     case invalidData
     case defaultRequestError

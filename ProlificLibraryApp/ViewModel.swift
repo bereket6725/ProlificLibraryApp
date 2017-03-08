@@ -13,8 +13,7 @@ import Foundation
     private var books:[Book] = []
 
     //makes request to retrieve bookArray from Prolifics API
-    func startNetworking(networkType: Networker){
-    }
+
 
     //for TVController to present on tableView Cells
      func returnBookTitle(index: IndexPath)->String{
