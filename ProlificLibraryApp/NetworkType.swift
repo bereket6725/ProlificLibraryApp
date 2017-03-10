@@ -28,7 +28,7 @@ struct ProlificRequest: RequestBuildable {
         case .get: endpoint = URL(string: BaseUrlStrings.prolific + ProlificAPIParameter.books)
         case .clear: endpoint = URL(string: BaseUrlStrings.prolific + ProlificAPIParameter.deleteAll)
         case .put(let id, _): endpoint = URL(string: BaseUrlStrings.prolific + ProlificAPIParameter.books + "/\(id)")
-        case .post(let id, _): endpoint = URL(string: BaseUrlStrings.prolific + ProlificAPIParameter.books + "/\(id)")
+        case .post(_): endpoint = URL(string: BaseUrlStrings.prolific + ProlificAPIParameter.books)
         case .delete(let id): endpoint = URL(string: BaseUrlStrings.prolific + ProlificAPIParameter.books + "/\(id)")
 
         }
@@ -49,7 +49,7 @@ struct ProlificAPIParameter{
 //determines the request type
 enum RequestType {
     case get
-    case post(id: Int, parameters: [String: Any])
+    case post(parameters: [String: Any])
     case put(id: Int, parameters: [String: Any])
     case delete(id: Int)
     case clear(String)

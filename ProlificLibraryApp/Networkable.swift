@@ -40,7 +40,7 @@ extension Networkable {
         switch builder.requestType {
         case .get: fatalError("invalid request type. .get is not for updates")
         case .put(_ , let parameters): updateParameters = parameters
-        case .post(_ , let parameters): updateParameters = parameters
+        case .post(let parameters): updateParameters = parameters
         default: updateParameters = nil
         }
         Alamofire.request(url, method: builder.requestType.methodType, parameters: updateParameters).responseJSON{  response in

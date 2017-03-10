@@ -22,9 +22,18 @@ class BookListViewController: UIViewController, UITableViewDelegate{
         tableView.rowHeight = 60.0
         tableView.register(UINib(nibName:"BookTableViewCell", bundle: nil), forCellReuseIdentifier: "CellIdentifier")
         getBooks()
-
+        //postBooks()
     }
 
+//    func postBooks(){
+//        let bookData = ["author4": "testAuthor4", "categories4": "testCategories4", "title4":"titleTest4", "publisher4":"testPublisher4"]
+//        let params = bookData as [String: Any]
+//        let postRequest = ProlificRequest(type: .post(parameters: params))
+//        ViewModel.startNetworking(request: postRequest){results in
+//            print("\(results)")
+//       }
+//    }
+    
     func getBooks(){
         let getRequest = ProlificRequest(type: .get)
         ViewModel.startNetworking(request: getRequest){bookArray in
