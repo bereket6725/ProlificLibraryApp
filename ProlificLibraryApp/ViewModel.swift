@@ -7,56 +7,73 @@
 //
 
 import Foundation
+import Alamofire
 
-fileprivate var books:[Book] = []
+var books:[Book] = []
 
- struct ViewModel{
+class ViewModel{
     //makes request to retrieve bookArray from Prolifics API
-    static func startNetworking(request: RequestBuildable, completion: ([Book]?)->Void){
+
+    static func startNetworking(request: RequestBuildable,
+                                completion: @escaping ([Book]?) -> Void) {
         switch request.requestType{
         case .get:
             ProlificNetworker.get(builder: request){ results in
                 switch results{
-                case .success(let bookArray):
-                books = bookArray
+                case .success(let booksArray):
+                    books = booksArray
+                    print("these are our books \(books)\n")
+                    completion(booksArray)
+
                 case .failure(let errorType):
-                print("could not return book array due to \(errorType.localizedDescription)")
-            }
+                    print("Could not retrieve book array, due to \(errorType.localizedDescription)")
+                    completion(nil)
+                }
             }
         default:
-            ProlificNetworker.update(builder: request){ results in
-                switch results {
-                case .success:
-                    print("updated to the server! :D")
-                case .failure(let errrorType):
-                    print("could not update server due to \(errrorType.localizedDescription)")
+            ProlificNetworker.update(builder: request){results in
+                switch results{
+                case .success():
+                    print("updated the server!")
+                case .failure(let errorType):
+                    print("could not update server due to \(errorType.localizedDescription)")
                 }
-
             }
         }
+
     }
-    //returns book information. It doesnt feel right to have the Controller have access to an Array of Models. Even if its just gonna present them 
+
+    //returns the preview information we use in the tableViewCell because
+    //something felt off to me about the Controller holding the model, even if its just to present it.
     static func bookInformation(index: Int, parameter: String)->String?{
         let bookNumber = index
         switch parameter{
         case "title":
-            return books[bookNumber].title
+            let title = books[bookNumber].title
+            return title
         case "author":
-            return books[bookNumber].author
+            let author = books[bookNumber].author
+            return author
         case "categories":
-            return books[bookNumber].categories
+            let categories = books[bookNumber].categories
+            return categories
         case "id":
-            return String(books[bookNumber].id)
+            let id = String(books[bookNumber].id)
+            return id
         case "lastCheckedOut":
-            return books[bookNumber].lastCheckedOut
+            let lastCheckedOut = books[bookNumber].lastCheckedOut
+            return lastCheckedOut
         case "lastCheckedOutBy":
-            return books[bookNumber].lastCheckedOutBy
+            let lastCheckedOutBy = books[bookNumber].lastCheckedOutBy
+            return lastCheckedOutBy
         case "publisher":
-            return books[bookNumber].publisher
+            let publisher = books[bookNumber].publisher
+            return publisher
         default:
             return nil
         }
-
     }
-
+    static func ArrayModelLength()->Int{
+        return books.count
+    }
 }

@@ -16,47 +16,50 @@ class BookListViewController: UIViewController, UITableViewDelegate{
         super.viewDidLoad()
         tableView = UITableView(frame: view.bounds)
         dataSource = TableDataSource()
+        view.addSubview(tableView)
         tableView.dataSource = dataSource
         tableView.delegate = self
-        tableView.rowHeight = 65.0
-        view.addSubview(tableView)
-        tableView.register(UINib(nibName:"TableViewCell", bundle: nil), forCellReuseIdentifier: "CellIdentifier")
-//        getBooks()
-//        let postRequest = ProlificRequest(type: .post(parameters: bookData))
-//        ViewModel.startNetworking(request: postRequest){results in
-//            print("results")
-//
-//        }
+        tableView.rowHeight = 60.0
+        tableView.register(UINib(nibName:"BookTableViewCell", bundle: nil), forCellReuseIdentifier: "CellIdentifier")
+        getBooks()
 
     }
 
     func getBooks(){
         let getRequest = ProlificRequest(type: .get)
-        ViewModel.startNetworking(request: getRequest){results in
-            print("\(results)")
+        ViewModel.startNetworking(request: getRequest){bookArray in
+            if bookArray != nil {
+            self.dataSource.bookArray = bookArray!
+            self.tableView.reloadData()
+            }
+            else{
+                print("couldnt get books")
+            }
         }
     }
 
+    @IBAction func AddBookButtonTapped(_ sender: Any) {
+
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       let viewController = UIViewController() as! CheckoutViewController
+       navigationController?.pushViewController(viewController, animated: true)
     }
 
     func reloadTableData(){
         getBooks()
     }
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
 
 }

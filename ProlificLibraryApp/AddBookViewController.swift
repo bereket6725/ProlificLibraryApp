@@ -1,20 +1,32 @@
 //
-//  BookDetailViewController.swift
+//  AddBookViewController.swift
 //  ProlificLibraryApp
 //
-//  Created by Bereket Ghebremedhin on 3/7/17.
+//  Created by Bereket Ghebremedhin on 3/10/17.
 //  Copyright © 2017 Bereket Ghebremedhin. All rights reserved.
 //
 
 import UIKit
 
-class BookDetailViewController: UIViewController {
+class AddBookViewController: UIViewController {
+
+    @IBOutlet weak var bookTitleTextField: UITextField!
+    @IBOutlet weak var bookAuthorTextField: UITextField!
+    @IBOutlet weak var bookPublisherTextField: UITextField!
+    @IBOutlet weak var bookCategoriesTextField: UITextField!
+    @IBOutlet weak var submitBookButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        submitBookButton.layer.cornerRadius = 20.0
+        title = "Add a Book"
         // Do any additional setup after loading the view.
     }
+    @IBAction func submitBookButtonTapped(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
 
+    @IBOutlet weak var submitBookButtonTapped: UIButton!
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

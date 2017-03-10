@@ -14,7 +14,7 @@ enum RequestError:Error{
     case invalidData
     case defaultRequestError
 }
-//Object that handles Pqrolific API Networking
+//Object that handles Prolific API Networking
 struct ProlificNetworker: Networkable {
     static func get(builder: RequestBuildable, completion: @escaping (Result<[Book], RequestError>) -> Void) {
         requestData(builder: builder) { result in
