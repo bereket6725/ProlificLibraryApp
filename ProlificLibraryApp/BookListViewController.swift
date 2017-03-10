@@ -15,9 +15,19 @@ class BookListViewController: UIViewController, UITableViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView = UITableView(frame: view.bounds)
+        dataSource = TableDataSource()
         tableView.dataSource = dataSource
         tableView.delegate = self
+        tableView.rowHeight = 65.0
         view.addSubview(tableView)
+        tableView.register(UINib(nibName:"TableViewCell", bundle: nil), forCellReuseIdentifier: "CellIdentifier")
+//        getBooks()
+//        let postRequest = ProlificRequest(type: .post(parameters: bookData))
+//        ViewModel.startNetworking(request: postRequest){results in
+//            print("results")
+//
+//        }
+
     }
 
     func getBooks(){
@@ -35,7 +45,8 @@ class BookListViewController: UIViewController, UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     }
 
-    func reloadTableData(){        
+    func reloadTableData(){
+        getBooks()
     }
 
     /*
