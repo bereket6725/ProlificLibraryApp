@@ -28,8 +28,20 @@ class TableDataSource:NSObject, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+
         return true
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+
+            let bookID = bookArray[indexPath.row].id
+            let deleteRequest = ProlificRequest(type: .delete(id: bookID))
+            ViewModel.startNetworking(request: deleteRequest){_ in 
+                self.bookArray.remove(at: indexPath.row)
+                print("dsd \(self.bookArray)")
+                tableView.reloadData()
+            }
+            
+        }
     }
 }

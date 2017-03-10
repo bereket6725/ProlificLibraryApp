@@ -41,6 +41,11 @@ class BookListViewController: UIViewController, UITableViewDelegate{
     @IBAction func AddBookButtonTapped(_ sender: Any) {
 
     }
+
+
+    @IBAction func deleteAllBooksButtonTapped(_ sender: Any) {
+        
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -48,8 +53,9 @@ class BookListViewController: UIViewController, UITableViewDelegate{
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       let viewController = UIViewController() as! CheckoutViewController
-       navigationController?.pushViewController(viewController, animated: true)
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "BookDetail") as? CheckoutViewController {
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 
     func reloadTableData(){

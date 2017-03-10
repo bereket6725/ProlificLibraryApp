@@ -102,12 +102,22 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		E314AAEE1E73359E00D62BCC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E3965F071E6CEAD600F25B1E /* Main.storyboard */,
+				E314AAEB1E7327F100D62BCC /* BookTableViewCell.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		E353C5E21E6E4E3300FBD6A4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				E3965F311E6E185800F25B1E /* BookListViewController.swift */,
 				E314AAE61E73189B00D62BCC /* CheckoutViewController.swift */,
 				E314AAE81E73194400D62BCC /* AddBookViewController.swift */,
+				E314AAEA1E7327F100D62BCC /* BookTableViewCell.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -149,9 +159,7 @@
 				E3965F341E6E1A7A00F25B1E /* Protocols */,
 				E3965F331E6E1A6700F25B1E /* Model */,
 				E3812C4D1E7241940027E1EA /* ViewModel */,
-				E3965F071E6CEAD600F25B1E /* Main.storyboard */,
-				E314AAEA1E7327F100D62BCC /* BookTableViewCell.swift */,
-				E314AAEB1E7327F100D62BCC /* BookTableViewCell.xib */,
+				E314AAEE1E73359E00D62BCC /* View */,
 				E3965F2F1E6E175200F25B1E /* TableDataSource.swift */,
 				E353C5E21E6E4E3300FBD6A4 /* Controller */,
 				E3965F0A1E6CEAD600F25B1E /* Assets.xcassets */,

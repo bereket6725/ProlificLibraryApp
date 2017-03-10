@@ -15,18 +15,21 @@ class AddBookViewController: UIViewController {
     @IBOutlet weak var bookPublisherTextField: UITextField!
     @IBOutlet weak var bookCategoriesTextField: UITextField!
     @IBOutlet weak var submitBookButton: UIButton!
+    @IBOutlet weak var cancelBookButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        submitBookButton.layer.cornerRadius = 20.0
         title = "Add a Book"
-        // Do any additional setup after loading the view.
+       
     }
+
     @IBAction func submitBookButtonTapped(_ sender: Any) {
+    }
+
+    @IBAction func cancelButtonTapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
 
-    @IBOutlet weak var submitBookButtonTapped: UIButton!
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -35,6 +35,7 @@ class ViewModel{
                 switch results{
                 case .success():
                     print("updated the server!")
+                    completion(nil)
                 case .failure(let errorType):
                     print("could not update server due to \(errorType.localizedDescription)")
                 }

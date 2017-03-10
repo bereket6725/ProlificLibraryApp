@@ -15,17 +15,21 @@ class CheckoutViewController: UIViewController {
     @IBOutlet weak var categoriesLabel: UILabel!
     @IBOutlet weak var checkoutInfoLabel: UILabel!
     @IBOutlet weak var checkoutButton: UIButton!
+    @IBOutlet weak var shareButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.checkoutButton.layer.cornerRadius = 20.0
-
+        self.shareButton.layer.cornerRadius = 20.0
         // Do any additional setup after loading the view.
     }
 
     @IBAction func checkoutButtonTapped(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
     }
+
+    @IBAction func shareButtonTapped(_ sender: Any) {
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
