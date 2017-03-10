@@ -35,6 +35,7 @@ fileprivate var books:[Book] = []
             }
         }
     }
+    //returns book information. It doesnt feel right to have the Controller have access to an Array of Models. Even if its just gonna present them 
     static func bookInformation(index: Int, parameter: String)->String?{
         let bookNumber = index
         switch parameter{
