@@ -14,9 +14,9 @@ enum RequestError:Error{
     case invalidData
     case defaultRequestError
 }
-//Object that handles Prolific API Networking
+//Object that handles Pqrolific API Networking
 struct ProlificNetworker: Networkable {
-    func get(builder: RequestBuildable, completion: @escaping (Result<[Book], RequestError>) -> Void) {
+    static func get(builder: RequestBuildable, completion: @escaping (Result<[Book], RequestError>) -> Void) {
         requestData(builder: builder) { result in
             switch result {
             case .success(let data): completion(.success(Book.parseJSON(data: data)))
@@ -25,7 +25,7 @@ struct ProlificNetworker: Networkable {
         }
     }
 
-    func update(builder: RequestBuildable, completion: @escaping (Result<Void, RequestError>) -> Void){
+    static func update(builder: RequestBuildable, completion: @escaping (Result<Void, RequestError>) -> Void){
         requestUpdate(builder: builder) { result in
             switch result {
             case .success: completion(.success())

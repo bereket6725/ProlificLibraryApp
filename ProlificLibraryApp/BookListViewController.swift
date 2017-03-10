@@ -16,9 +16,15 @@ class BookListViewController: UIViewController, UITableViewDelegate{
         super.viewDidLoad()
         tableView = UITableView(frame: view.bounds)
         tableView.dataSource = dataSource
+        tableView.delegate = self
+        view.addSubview(tableView)
+    }
 
-        let viewModel = ViewModel()
-        
+    func getBooks(){
+        let getRequest = ProlificRequest(type: .get)
+        ViewModel.startNetworking(request: getRequest){results in
+            print("\(results)")
+        }
     }
 
     override func didReceiveMemoryWarning() {

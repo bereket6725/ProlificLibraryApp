@@ -11,13 +11,13 @@ import Alamofire
 
 protocol Networkable {
     associatedtype P: Parsable
-    func get(builder: RequestBuildable, completion: @escaping (Result<[P], RequestError>) -> Void)
-    func update(builder: RequestBuildable, completion: @escaping (Result<Void, RequestError>) -> Void)
+    static func get(builder: RequestBuildable, completion: @escaping (Result<[P], RequestError>) -> Void)
+    static func update(builder: RequestBuildable, completion: @escaping (Result<Void, RequestError>) -> Void)
 }
 
 extension Networkable {
 
-    func requestData(builder: RequestBuildable,
+    static func requestData(builder: RequestBuildable,
                      completion: @escaping (Result<Data, RequestError>) -> Void) {
         guard let url = builder.endpoint else { completion(.failure(.invalidUrl)); return }
         let type = builder.requestType
@@ -32,7 +32,7 @@ extension Networkable {
         }
     }
 
-    func requestUpdate(builder: RequestBuildable, completion: @escaping (Result<Void, RequestError>) -> Void) {
+    static func requestUpdate(builder: RequestBuildable, completion: @escaping (Result<Void, RequestError>) -> Void) {
 
         guard let url = builder.endpoint else { completion(.failure(.invalidUrl)); return }
         var updateParameters: [String: Any]?

@@ -8,31 +8,54 @@
 
 import Foundation
 
+fileprivate var books:[Book] = []
 
  struct ViewModel{
-    private var books:[Book] = []
-
     //makes request to retrieve bookArray from Prolifics API
+    static func startNetworking(request: RequestBuildable, completion: ([Book]?)->Void){
+        switch request.requestType{
+        case .get:
+            ProlificNetworker.get(builder: request){ results in
+                switch results{
+                case .success(let bookArray):
+                books = bookArray
+                case .failure(let errorType):
+                print("could not return book array due to \(errorType.localizedDescription)")
+            }
+            }
+        default:
+            ProlificNetworker.update(builder: request){ results in
+                switch results {
+                case .success:
+                    print("updated to the server! :D")
+                case .failure(let errrorType):
+                    print("could not update server due to \(errrorType.localizedDescription)")
+                }
 
-
-    //for TVController to present on tableView Cells
-     func returnBookTitle(index: IndexPath)->String{
-        let bookNumber = index.row + 1
-        let title = books[bookNumber].title
-        return title
+            }
+        }
     }
+    static func bookInformation(index: Int, parameter: String)->String?{
+        let bookNumber = index
+        switch parameter{
+        case "title":
+            return books[bookNumber].title
+        case "author":
+            return books[bookNumber].author
+        case "categories":
+            return books[bookNumber].categories
+        case "id":
+            return String(books[bookNumber].id)
+        case "lastCheckedOut":
+            return books[bookNumber].lastCheckedOut
+        case "lastCheckedOutBy":
+            return books[bookNumber].lastCheckedOutBy
+        case "publisher":
+            return books[bookNumber].publisher
+        default:
+            return nil
+        }
 
-    //for TVController to present on tableView Cells
-     func returnBookAuthor(index: IndexPath)->String{
-        let bookNumber = index.row + 1
-        let author = books[bookNumber].author
-        return author
-    }
-    //for DVController to present on Screen
-     func returnAllDetailsOfBook(index: IndexPath)->Book{
-        let bookNumber = index.row
-        let book = books[bookNumber]
-        return book
     }
 
 }
