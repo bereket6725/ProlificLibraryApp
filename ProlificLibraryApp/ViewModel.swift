@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-var books:[Book] = []
+fileprivate var books:[Book] = []
 
 class ViewModel{
     //makes request to retrieve bookArray from Prolifics API
@@ -37,11 +37,14 @@ class ViewModel{
 
     static func startUpdating(request: RequestBuildable, completion: @escaping (Result<Void, RequestError>) -> Void){
         switch request.requestType{
-        case .post, .put, .delete:
+        case .post, .put, .delete, .clear:
             ProlificNetworker.update(builder: request){ results in
                 switch results{
                 case .success():
+                let request = ProlificRequest(type: .get)
+                ViewModel.requestBooks(request: request){ updatedBooks in
                 completion(.success())
+                }
                 case .failure(let error):
                 completion(.failure(error))
                 }
@@ -50,4 +53,28 @@ class ViewModel{
             print("bad request")
     }
 }
+    static func BookIDForIndex(index: Int)->Int{
+        let id = books[index].id
+        return id
+    }
+    
+    static func bookInfo(bookNumber: Int, param: String)->String?{
+        switch param{
+            case "title":
+                return books[bookNumber].title
+            case "author":
+                return books[bookNumber].author
+            case "publisher":
+                return books[bookNumber].publisher
+            case "categories":
+                return books[bookNumber].categories
+            case "lastCheckedOut":
+                return books[bookNumber].lastCheckedOut
+            case "lastCheckedOutBy":
+                return books[bookNumber].lastCheckedOutBy
+            default:
+            print("wrong parameter")
+            return " "
+        }
+    }
 }

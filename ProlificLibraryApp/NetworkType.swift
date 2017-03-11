@@ -40,7 +40,7 @@ struct BaseUrlStrings {
 
 struct ProlificAPIParameter{
     static let books  =  "/books"
-    static let deleteAll  =  "/clear"
+    static let deleteAll  =  "/clean"
 }
 
 //determines the request type
@@ -49,7 +49,7 @@ enum RequestType {
     case post(parameters: [String: Any])
     case put(id: Int, parameters: [String: Any])
     case delete(id: Int)
-    case clear(String)
+    case clear
 
     var methodType: Alamofire.HTTPMethod {
         switch self{

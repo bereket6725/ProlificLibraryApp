@@ -23,22 +23,7 @@ class BookListViewController: UIViewController, UITableViewDelegate{
         tableView.register(UINib(nibName:"BookTableViewCell", bundle: nil), forCellReuseIdentifier: "CellIdentifier")
         getBooks()
         //postBooks()
-        
     }
-
-//    func postBooks(){
-//        let bookData = ["author": "testAuthor7", "categories": "testCategories7", "title":"titleTest7", "publisher":"testPublisher7"]
-//        let params = bookData as [String: Any]
-//        let postRequest = ProlificRequest(type: .post(parameters: params))
-//        ViewModel.startUpdating(request: postRequest){results in
-//            switch results{
-//            case .success():
-//                print("updated!")
-//            case .failure(let error):
-//                print("couldnt update due to \(error.localizedDescription)")
-//            }
-//       }
-//    }
 
     func getBooks(){
         let getRequest = ProlificRequest(type: .get)
@@ -57,18 +42,43 @@ class BookListViewController: UIViewController, UITableViewDelegate{
 
     }
 
-
     @IBAction func deleteAllBooksButtonTapped(_ sender: Any) {
-        
+        let alert = UIAlertController(title: "You Sure?", message: "This will delete all books. Do you wish to proceed?", preferredStyle: .alert)
+
+        let deleteAll = UIAlertAction(title: "Continue", style: .default){ action in
+            let clearRequest = ProlificRequest(type: .clear)
+            self.startUpdating(request: clearRequest)
+        }
+        let cancel = UIAlertAction(title: "cancel", style: .cancel, handler: nil)
+
+        //alert.addAction(UIAlertAction(title: "Delete All", style: .default, handler: self.startUpdating))
+        alert.addAction(deleteAll)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
+    }
+
+    func startUpdating(request: ProlificRequest){        
+        ViewModel.startUpdating(request: request){results in
+            switch results{
+            case .success():
+                self.tableView.reloadData()
+                
+                print("success!")
+                self.tableView.reloadData()
+            case .failure(let errorType):
+                print("could not perform operation due to \(errorType.localizedDescription)")
+            }
+
+        }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func alert(){
+
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "BookDetail") as? CheckoutViewController {
+            vc.bookNumber = indexPath.row
             navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -79,8 +89,6 @@ class BookListViewController: UIViewController, UITableViewDelegate{
 
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
 
+}
 }
