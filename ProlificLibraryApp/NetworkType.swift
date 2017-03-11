@@ -21,16 +21,13 @@ struct ProlificRequest: RequestBuildable {
 
     init(type: RequestType) {
         self.requestType = type
-
         var endpoint: URL?
-
         switch type {
         case .get: endpoint = URL(string: BaseUrlStrings.prolific + ProlificAPIParameter.books)
         case .clear: endpoint = URL(string: BaseUrlStrings.prolific + ProlificAPIParameter.deleteAll)
         case .put(let id, _): endpoint = URL(string: BaseUrlStrings.prolific + ProlificAPIParameter.books + "/\(id)")
         case .post(_): endpoint = URL(string: BaseUrlStrings.prolific + ProlificAPIParameter.books)
         case .delete(let id): endpoint = URL(string: BaseUrlStrings.prolific + ProlificAPIParameter.books + "/\(id)")
-
         }
         self.endpoint = endpoint
     }

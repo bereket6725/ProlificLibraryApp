@@ -36,12 +36,18 @@ class TableDataSource:NSObject, UITableViewDataSource {
 
             let bookID = bookArray[indexPath.row].id
             let deleteRequest = ProlificRequest(type: .delete(id: bookID))
-            ViewModel.startNetworking(request: deleteRequest){_ in 
-                self.bookArray.remove(at: indexPath.row)
-                print("dsd \(self.bookArray)")
-                tableView.reloadData()
+            ViewModel.startUpdating(request: deleteRequest){results in
+                switch results{
+                case .success():
+                    self.bookArray.remove(at: indexPath.row)
+                    tableView.reloadData()
+                    case .failure(let error):
+                    print("error due to \(error.localizedDescription)")
+
+                }
+
             }
-            
+
         }
     }
 }

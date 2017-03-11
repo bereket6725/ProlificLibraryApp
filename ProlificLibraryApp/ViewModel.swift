@@ -13,8 +13,7 @@ var books:[Book] = []
 
 class ViewModel{
     //makes request to retrieve bookArray from Prolifics API
-
-    static func startNetworking(request: RequestBuildable,
+    static func requestBooks(request: RequestBuildable,
                                 completion: @escaping ([Book]?) -> Void) {
         switch request.requestType{
         case .get:
@@ -31,49 +30,24 @@ class ViewModel{
                 }
             }
         default:
-            ProlificNetworker.update(builder: request){results in
+            print("bad request Type. Only GET requests!")
+        }
+    }
+
+
+    static func startUpdating(request: RequestBuildable, completion: @escaping (Result<Void, RequestError>) -> Void){
+        switch request.requestType{
+        case .post, .put, .delete:
+            ProlificNetworker.update(builder: request){ results in
                 switch results{
                 case .success():
-                    print("updated the server!")
-                case .failure(let errorType):
-                    print("could not update server due to \(errorType.localizedDescription)")
+                completion(.success())
+                case .failure(let error):
+                completion(.failure(error))
                 }
             }
-        }
-
-    }
-
-    //returns the preview information we use in the tableViewCell because
-    //something felt off to me about the Controller holding the model, even if its just to present it.
-    static func bookInformation(index: Int, parameter: String)->String?{
-        let bookNumber = index
-        switch parameter{
-        case "title":
-            let title = books[bookNumber].title
-            return title
-        case "author":
-            let author = books[bookNumber].author
-            return author
-        case "categories":
-            let categories = books[bookNumber].categories
-            return categories
-        case "id":
-            let id = String(books[bookNumber].id)
-            return id
-        case "lastCheckedOut":
-            let lastCheckedOut = books[bookNumber].lastCheckedOut
-            return lastCheckedOut
-        case "lastCheckedOutBy":
-            let lastCheckedOutBy = books[bookNumber].lastCheckedOutBy
-            return lastCheckedOutBy
-        case "publisher":
-            let publisher = books[bookNumber].publisher
-            return publisher
         default:
-            return nil
-        }
+            print("bad request")
     }
-    static func ArrayModelLength()->Int{
-        return books.count
-    }
+}
 }
