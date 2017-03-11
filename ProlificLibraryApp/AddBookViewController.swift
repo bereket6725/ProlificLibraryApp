@@ -61,11 +61,11 @@ class AddBookViewController: UIViewController, UITextFieldDelegate {
     }
 
     func postAlertResponse(message:String){
-
         let alert = UIAlertController(title: message, message: "\(message)", preferredStyle: .alert)
         let ok = UIAlertAction(title: "Ok", style: .default, handler: nil)
         alert.addAction(ok)
-        self.present(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion:nil)
+        self.dismiss(animated: true, completion: nil)
     }
 
     @IBAction func cancelButtonTapped(_ sender: Any) {
