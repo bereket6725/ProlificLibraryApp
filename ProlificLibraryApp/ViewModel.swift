@@ -41,10 +41,11 @@ class ViewModel{
             ProlificNetworker.update(builder: request){ results in
                 switch results{
                 case .success():
-                let request = ProlificRequest(type: .get)
-                ViewModel.requestBooks(request: request){ updatedBooks in
-                completion(.success())
-                }
+                    completion(.success())
+//                let request = ProlificRequest(type: .get)
+//                ViewModel.requestBooks(request: request){ updatedBooks in
+//                completion(.success())
+//                }
                 case .failure(let error):
                 completion(.failure(error))
                 }

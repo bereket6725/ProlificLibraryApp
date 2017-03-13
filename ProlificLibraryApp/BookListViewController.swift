@@ -25,6 +25,11 @@ class BookListViewController: UIViewController, UITableViewDelegate{
         //postBooks()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getBooks()
+    }
+
     func getBooks(){
         let getRequest = ProlificRequest(type: .get)
         ViewModel.requestBooks(request: getRequest){bookArray in
