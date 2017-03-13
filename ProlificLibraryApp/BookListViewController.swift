@@ -21,26 +21,36 @@ class BookListViewController: UIViewController, UITableViewDelegate{
         tableView.delegate = self
         tableView.rowHeight = 60.0
         tableView.register(UINib(nibName:"BookTableViewCell", bundle: nil), forCellReuseIdentifier: "CellIdentifier")
+        let myRefreshControl = UIRefreshControl()
+        myRefreshControl.backgroundColor = UIColor.gray
+        myRefreshControl.tintColor = UIColor.white
+        myRefreshControl.addTarget(self, action: #selector(BookListViewController.getBooks), for: .valueChanged)
+        self.tableView.refreshControl = myRefreshControl
         getBooks()
         //postBooks()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        getBooks()
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        getBooks()
+//    }
 
     func getBooks(){
         let getRequest = ProlificRequest(type: .get)
         ViewModel.requestBooks(request: getRequest){bookArray in
             if bookArray != nil {
             self.dataSource.bookArray = bookArray!
-            self.tableView.reloadData()
+            self.reloadTableView()
             }
             else{
                 print("couldnt get books")
             }
         }
+    }
+
+    func reloadTableView(){
+        self.tableView.reloadData()
+        self.tableView.refreshControl?.endRefreshing()
     }
 
     @IBAction func AddBookButtonTapped(_ sender: Any) {

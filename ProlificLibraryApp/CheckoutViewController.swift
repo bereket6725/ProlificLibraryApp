@@ -31,8 +31,6 @@ class CheckoutViewController: UIViewController {
         self.categoriesLabel.text = ViewModel.bookInfo(bookNumber: bookNumber, param: "categories")
         self.checkoutInfoLabel.text = ViewModel.bookInfo(bookNumber: bookNumber, param: "lastCheckedOut") ?? "not checked out"
         self.checkOutByInfoLabel.text = ViewModel.bookInfo(bookNumber: bookNumber, param: "lastCheckedOutBy") ?? "not checked out by anyone yet"
-
-        // Do any additional setup after loading the view.
     }
 
     @IBAction func checkoutButtonTapped(_ sender: Any) {
@@ -47,10 +45,7 @@ class CheckoutViewController: UIViewController {
             case .failure(let errorType):
                 print("could not update book due to \(errorType.localizedDescription)")
             }
-
         }
-
-        
     }
 
     @IBAction func shareButtonTapped(_ sender: Any) {
@@ -69,15 +64,5 @@ class CheckoutViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
