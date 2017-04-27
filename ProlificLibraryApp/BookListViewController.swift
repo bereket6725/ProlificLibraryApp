@@ -61,15 +61,17 @@ class BookListViewController: UIViewController, UITableViewDelegate{
         let alert = UIAlertController(title: "You Sure?", message: "This will delete all books. Do you wish to proceed?", preferredStyle: .alert)
 
         let deleteAll = UIAlertAction(title: "Continue", style: .default){ action in
-            let clearRequest = ProlificRequest(type: .clear)
-            self.startUpdating(request: clearRequest)
+           let clearRequest = ProlificRequest(type: .clear)
+           self.startUpdating(request: clearRequest)
         }
+        
         let cancel = UIAlertAction(title: "cancel", style: .cancel, handler: nil)
 
         //alert.addAction(UIAlertAction(title: "Delete All", style: .default, handler: self.startUpdating))
         alert.addAction(deleteAll)
         alert.addAction(cancel)
         present(alert, animated: true, completion: nil)
+        
     }
 
     func startUpdating(request: ProlificRequest){        

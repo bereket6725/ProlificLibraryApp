@@ -24,19 +24,20 @@ class AddBookViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func submitBookButtonTapped(_ sender: Any) {
-        guard let title = self.bookTitleTextField.text else {
+        
+        guard let title = self.bookTitleTextField.text, !title.isEmpty else {
             self.postAlertResponse(message: "Invalid Input")
             return
         }
-        guard let author = self.bookAuthorTextField.text else {
+        guard let author = self.bookAuthorTextField.text, !author.isEmpty else {
             self.postAlertResponse(message: "Invalid Input")
             return
         }
-        guard let publisher = self.bookPublisherTextField.text else {
+        guard let publisher = self.bookPublisherTextField.text, !publisher.isEmpty else {
             self.postAlertResponse(message: "Invalid Input")
             return
         }
-        guard let categories = self.bookTitleTextField.text else {
+        guard let categories = self.bookTitleTextField.text, !categories.isEmpty else {
             self.postAlertResponse(message: "Invalid Input")
             return
         }
@@ -62,11 +63,21 @@ class AddBookViewController: UIViewController, UITextFieldDelegate {
 
     func postAlertResponse(message:String){
         let alert = UIAlertController(title: message, message: "\(message)", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        //let ok = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        let ok = UIAlertAction(title: "Ok", style: .default) { _ in
+            if message == "Post Sent"{
+            self.dismissViewController()
+            }
+        }
+        
+        
         alert.addAction(ok)
         self.present(alert, animated: true, completion: nil)
     }
-
+    
+    func dismissViewController(){
+        self.dismiss(animated: true, completion: nil)
+    }
 
 
     @IBAction func cancelButtonTapped(_ sender: Any) {

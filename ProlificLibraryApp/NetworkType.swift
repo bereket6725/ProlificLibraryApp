@@ -33,7 +33,6 @@ struct ProlificRequest: RequestBuildable {
     }
 }
 
-
 struct BaseUrlStrings {
     fileprivate static let prolific = "http:prolific-interview.herokuapp.com/58b0a27680b91a000a49ef17"
 }

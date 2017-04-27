@@ -21,7 +21,6 @@ extension Networkable {
                      completion: @escaping (Result<Data, RequestError>) -> Void) {
         guard let url = builder.endpoint else { completion(.failure(.invalidUrl)); return }
         let type = builder.requestType
-
         switch type {
         case .get:
             Alamofire.request(url).responseJSON{ response in
@@ -36,7 +35,6 @@ extension Networkable {
 
         guard let url = builder.endpoint else { completion(.failure(.invalidUrl)); return }
         var updateParameters: [String: Any]?
-
         switch builder.requestType {
         case .get: fatalError("invalid request type. .get is not for updates")
         case .put(_ , let parameters): updateParameters = parameters

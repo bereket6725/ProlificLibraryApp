@@ -11,6 +11,7 @@ import Alamofire
 
 fileprivate var books:[Book] = []
 
+
 class ViewModel{
     //makes request to retrieve bookArray from Prolifics API
     static func requestBooks(request: RequestBuildable,
@@ -42,12 +43,8 @@ class ViewModel{
                 switch results{
                 case .success():
                     completion(.success())
-//                let request = ProlificRequest(type: .get)
-//                ViewModel.requestBooks(request: request){ updatedBooks in
-//                completion(.success())
-//                }
                 case .failure(let error):
-                completion(.failure(error))
+                    completion(.failure(error))
                 }
             }
         default:
