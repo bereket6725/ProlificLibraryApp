@@ -12,6 +12,7 @@ class BookListViewController: UIViewController, UITableViewDelegate{
     var tableView: UITableView!
     var dataSource: TableDataSource!
 
+    //sets up the tableView
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView = UITableView(frame: view.bounds)
@@ -30,11 +31,7 @@ class BookListViewController: UIViewController, UITableViewDelegate{
         //postBooks()
     }
 
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        getBooks()
-//    }
-
+    //requests all books from Prolifics server
     func getBooks(){
         let getRequest = ProlificRequest(type: .get)
         ViewModel.requestBooks(request: getRequest){bookArray in
@@ -56,7 +53,7 @@ class BookListViewController: UIViewController, UITableViewDelegate{
     @IBAction func AddBookButtonTapped(_ sender: Any) {
 
     }
-
+    //handles the delete all request and prompts the user with a warning before proceeding
     @IBAction func deleteAllBooksButtonTapped(_ sender: Any) {
         let alert = UIAlertController(title: "You Sure?", message: "This will delete all books. Do you wish to proceed?", preferredStyle: .alert)
 
@@ -64,22 +61,18 @@ class BookListViewController: UIViewController, UITableViewDelegate{
            let clearRequest = ProlificRequest(type: .clear)
            self.startUpdating(request: clearRequest)
         }
-        
         let cancel = UIAlertAction(title: "cancel", style: .cancel, handler: nil)
-
-        //alert.addAction(UIAlertAction(title: "Delete All", style: .default, handler: self.startUpdating))
         alert.addAction(deleteAll)
         alert.addAction(cancel)
         present(alert, animated: true, completion: nil)
         
     }
-
-    func startUpdating(request: ProlificRequest){        
+    
+    //handles all other requests
+    func startUpdating(request: ProlificRequest){
         ViewModel.startUpdating(request: request){results in
             switch results{
             case .success():
-                self.tableView.reloadData()
-                
                 print("success!")
                 self.tableView.reloadData()
             case .failure(let errorType):
@@ -87,10 +80,6 @@ class BookListViewController: UIViewController, UITableViewDelegate{
             }
 
         }
-    }
-    
-    func alert(){
-
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -106,6 +95,8 @@ class BookListViewController: UIViewController, UITableViewDelegate{
 
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        (segue.destination as! AddBookViewController).parentVC = self
+    }
 
-}
+
 }

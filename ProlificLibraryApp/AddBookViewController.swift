@@ -17,14 +17,15 @@ class AddBookViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var submitBookButton: UIButton!
     @IBOutlet weak var cancelBookButton: UIButton!
 
+    var parentVC: BookListViewController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Add a Book"
-       
     }
-
+    
+    //will check to make sure none of the fields are empty 
     @IBAction func submitBookButtonTapped(_ sender: Any) {
-        
         guard let title = self.bookTitleTextField.text, !title.isEmpty else {
             self.postAlertResponse(message: "Invalid Input")
             return
@@ -46,21 +47,22 @@ class AddBookViewController: UIViewController, UITextFieldDelegate {
         self.postData(params: params)
     }
 
+    //adds a book to the library
     func postData(params: [String:Any]){
         let request = ProlificRequest(type: .post(parameters: params))
         ViewModel.startUpdating(request: request){ results in
             switch results{
             case .success():
                 self.postAlertResponse(message: "Post Sent")
+                self.parentVC.getBooks()
             case .failure(let error):
                 print("could not complete due to \(error.localizedDescription)")
                 self.postAlertResponse(message: "Invalid Input")
-
             }
-
         }
     }
 
+    
     func postAlertResponse(message:String){
         let alert = UIAlertController(title: message, message: "\(message)", preferredStyle: .alert)
         //let ok = UIAlertAction(title: "Ok", style: .default, handler: nil)
@@ -68,7 +70,7 @@ class AddBookViewController: UIViewController, UITextFieldDelegate {
             if message == "Post Sent"{
             self.dismissViewController()
             }
-        }
+    }
         
         
         alert.addAction(ok)
